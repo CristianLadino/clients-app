@@ -1,0 +1,13 @@
+<button type="button" (click)="view = !view" class="btn btn-primary my-3">{{view == true? 'Hidden': 'View'}}</button>
+
+<div class="card">
+    <div class="card-header">
+        List Courses
+    </div>
+
+    <ul *ngIf="view == true" class="list-group">
+        <li *ngFor="let course of listCourses" class="list-group-item">
+            {{course}}
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,27 @@
+<ul class="pagination" *ngIf="pages?.length > 0">
+
+    <li class="page-item bg-dark" *ngIf="paginator.number > 0">
+        <a class="page-link bg-dark text-white" [routerLink]="[ '/clients/page', paginator.number-1 ]">&laquo;</a>
+    </li>
+
+    <li class="bg-dark" [ngClass]="paginator.first? 'disabled page-item': 'page-item'">
+        <a class="page-link bg-dark text-white" [routerLink]="[ '/clients/page', 0 ]">Primera</a>
+    </li>
+
+    <li class="page-item bg-dark" *ngFor="let numberPage of pages" [ngClass]="numberPage-1 == paginator.number?'active':''">
+        <span class="page-link bg-dark text-white" *ngIf="numberPage-1 == paginator.number ">
+            {{numberPage}}
+        </span>
+        <a class="page-link bg-dark text-white" *ngIf="numberPage-1 != paginator.number " [routerLink]="['/clients/page', numberPage - 1]">
+            {{numberPage}}
+       </a>
+    </li>
+
+    <li class="bg-dark" [ngClass]="paginator.last? 'disabled page-item': 'page-item'">
+        <a class="page-link bg-dark text-white" [routerLink]="[ '/clients/page', paginator.totalPages-1 ]">Ultima</a>
+    </li>
+
+    <li class="page-item bg-dark" *ngIf="paginator.number < paginator.totalPages-1">
+        <a class="page-link bg-dark text-white" [routerLink]="[ '/clients/page', paginator.number+1 ]">&raquo;</a>
+    </li>
+</ul>
