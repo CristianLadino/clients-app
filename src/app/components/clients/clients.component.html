@@ -1,3 +1,4 @@
+<app-profile-client *ngIf="selectedClient" [client]="selectedClient"></app-profile-client>
 <div class="card text-white bg-dark mb-3">
     <div class="card-header">Clients</div>
     <div class="card-body">
@@ -8,7 +9,7 @@
         </div>
 
         <div *ngIf="clients?.length == 0" class="alert alert-info">
-            No hay registros en la base de datos ?
+            No records in the database!
         </div>
 
         <table class="table table-bordered table-striped text-white" *ngIf="clients?.length > 0">
@@ -21,6 +22,7 @@
                     <th>Date</th>
                     <th>edit</th>
                     <th>delete</th>
+                    <th>see more</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,6 +38,7 @@
                     <td>
                         <button type="button" name="delete" (click)="delete(client)" class="btn btn-outline-danger">Delete</button>
                     </td>
+                    <td><button type="button" (click)="modalProfile(client)" class="btn btn-outline-warning">view</button></td>
                 </tr>
             </tbody>
         </table>

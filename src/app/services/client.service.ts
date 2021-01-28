@@ -2,7 +2,12 @@ import { Injectable } from '@angular/core';
 import { formatDate, DatePipe } from '@angular/common';
 import { Client } from '../class/client';
 import { Observable, of, throwError } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpEvent,
+  HttpHeaders,
+  HttpRequest,
+} from '@angular/common/http';
 import { map, catchError, tap } from 'rxjs/operators';
 import swal from 'sweetalert2';
 
@@ -107,5 +112,23 @@ export class ClientService {
           return throwError(e);
         })
       );
+  }
+
+  uploadPhoto(file: File, id): Observable<HttpEvent<{}>> {
+    let formData = new FormData();
+
+    formData.append('file', file);
+    formData.append('id', id);
+
+    const req = new HttpRequest(
+      'POST',
+      `${this.urlEndPonit}/upload`,
+      formData,
+      {
+        reportProgress: true,
+      }
+    );
+
+    return this.http.request(req);
   }
 }
